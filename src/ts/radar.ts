@@ -343,6 +343,17 @@ async function init() {
   document
     .getElementById("btn-stop")
     ?.addEventListener("click", () => loop.stop());
+
+  // Refresh frames every 5 minutes
+  setInterval(async () => {
+    const { frames: newFrameUrls } = await discoverFrames(config.productId);
+    if (newFrameUrls.length > 0) {
+      const wasPlaying = loop.isPlaying;
+      loop.stop();
+      await loop.loadFrames(newFrameUrls);
+      if (wasPlaying) loop.play();
+    }
+  }, 5 * 60 * 1000);
 }
 
 function setupMapFeatures(overlayManager: OverlayManager) {

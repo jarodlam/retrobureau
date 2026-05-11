@@ -55,6 +55,9 @@ export class RadarLoop {
     });
   }
 
+  get isPlaying(): boolean {
+    return this.playMode !== "stopped";
+  }
 
   private displayFrame() {
     if (this.frames.length === 0) return;

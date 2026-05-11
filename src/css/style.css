@@ -67,6 +67,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
+  top: 3px;
 }
 
 .site-header .logo-text .hline {
@@ -101,6 +103,30 @@ a:hover {
   padding: 0 4px;
 }
 
+
+.capital-cities {
+  margin-top: 16px;
+  border-collapse: collapse;
+}
+
+.capital-cities td {
+  padding: 0;
+  text-align: center;
+  border: 1px solid rgb(204, 204, 204);
+  font-size: 12px;
+}
+
+.capital-cities td a {
+  display: block;
+  padding: 8px 20px;
+}
+
+.capital-cities td:first-child {
+  background: rgb(238, 238, 238);
+  font-weight: bold;
+  padding: 8px 20px;
+  text-align: left;
+}
 
 #aus-radar-map {
   display: block;
@@ -341,12 +367,9 @@ table.viewer .togglesPanel input {
 
 /* Radar controls */
 .loopcontrols {
-  text-align: center;
-  padding: 4px 0;
-}
-
-.loopcontrols div {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  padding: 4px;
 }
 
 .loopcontrols a {
@@ -387,6 +410,7 @@ table.viewer .togglesPanel input {
 
 #map-features label {
   cursor: pointer;
+  display: block;
 }
 
 #map-features input[type="checkbox"] {
@@ -462,4 +486,9 @@ table.viewer .togglesPanel input {
     max-width: 100%;
     margin: 0 auto;
   }
+
+  .capital-cities {
+    width: 100%;
+  }
+
 }
