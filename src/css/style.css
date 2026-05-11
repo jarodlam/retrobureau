@@ -1,0 +1,465 @@
+/* RetroBureau - BOM Legacy Radar Recreation */
+
+:root {
+  --content-width: 750px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #222;
+  background: #fff;
+}
+
+a {
+  color: #036;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #069;
+}
+
+/* Header */
+.site-header {
+  background: #003366;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.site-header .header-content {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.site-header .logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 2px;
+}
+
+.site-header .logo img {
+  height: 40px;
+  width: 40px;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
+.site-header .logo-text {
+  font-family: "Times New Roman", Times, serif;
+  color: #fff;
+  line-height: 1.1;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.site-header .logo-text .hline {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  margin: 2px 0;
+}
+
+.site-header .logo-text-top {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.site-header .logo-text-bottom {
+  font-weight: normal;
+  font-size: 10px;
+}
+
+/* Index Page */
+.index-page {
+  padding: 0;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.index-page h1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0 6px;
+  padding: 0 4px;
+}
+
+
+#aus-radar-map {
+  display: block;
+  text-align: left;
+}
+
+#aus-radar-map img {
+  border: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* Radar Page */
+.radar-page {
+  padding: 0;
+}
+
+.radar-title {
+  font-size: 16px;
+  font-weight: bold;
+  max-width: var(--content-width);
+  margin: 10px auto 6px;
+  padding: 0 4px;
+}
+
+/* Tabs / Size selector */
+.tabs-bar {
+  background: transparent;
+  padding: 0;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  border: none;
+}
+
+.tabs-bar > table {
+  margin: 0;
+  padding: 0;
+}
+
+.tabs-bar table table {
+  margin: 0;
+  padding: 0;
+}
+
+.tabs-bar table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tabs-bar td {
+  padding: 0;
+  font-size: 12px;
+}
+
+.tabs-bar .notactivetab,
+.tabs-bar .activetab {
+  padding: 4px 8px;
+  text-align: center;
+}
+
+.tabs-bar .links {
+  border: 1px solid rgb(204, 204, 204);
+  margin-top: -1px;
+}
+
+.tabs-bar .links td,
+.tabs-bar .links th {
+  padding: 2px 6px;
+  text-align: center;
+}
+
+.tabs-bar .notactivetab {
+  background: rgb(238, 238, 238);
+  font-weight: bold;
+  border: 1px solid rgb(204, 204, 204);
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.tabs-bar .activetab {
+  background: rgb(218, 218, 218);
+  border: 1px solid rgb(204, 204, 204);
+  border-top: none;
+}
+
+.tabs-bar .activetab a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  margin: -4px -8px;
+  padding: 4px 8px;
+}
+
+.tabs-bar .activetab:hover {
+  background: rgb(204, 204, 204);
+}
+
+.tabs-bar .links th {
+  font-weight: bold;
+  font-size: 12px;
+  text-align: left;
+}
+
+/* Viewer table */
+table.viewer {
+  overflow: hidden;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table.viewer td,
+table.viewer th {
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+}
+
+table.viewer td#overlayCell {
+  overflow: hidden;
+  width: 512px;
+  max-width: 100%;
+}
+
+table.viewer td.imagePanel {
+  background-color: transparent;
+  width: 512px;
+  max-width: 100%;
+}
+
+table.viewer .togglesPanel {
+  color: #222;
+  vertical-align: top;
+  padding: 0;
+}
+
+table.viewer .togglesPanel p {
+  line-height: 1.2em;
+  padding: 0.1em;
+}
+
+table.viewer .togglesPanel input {
+  vertical-align: middle;
+}
+
+/* Overlay container */
+#overlay {
+  width: 100%;
+  max-width: 512px;
+}
+
+#overlay-images {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 512 / 557;
+}
+
+#loading-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% * 512 / 557);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  background: #f0f0f0;
+  z-index: 50;
+}
+
+#loading-progress-wrap {
+  margin-top: 16px;
+}
+
+#loading-progress-bar {
+  width: 200px;
+  height: 12px;
+}
+
+#loading-progress-text {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #999;
+}
+
+#loading-indicator.hidden {
+  display: none;
+}
+
+#overlay-images img.animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% * 512 / 557);
+}
+
+#overlay-images .layer-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+#overlay-images .layer-div:not(.legend) {
+  height: calc(100% * 512 / 557);
+}
+
+
+/* Border items (control panels) - matches BOM */
+.border_item {
+  background: #f7f7f9;
+  border: 1px solid rgb(204, 204, 204);
+  margin: -1px 0 0 0;
+  padding: 0;
+}
+
+.radarLabel {
+  background-color: rgb(204, 204, 204);
+  color: #0f5499;
+  display: flex;
+  align-items: center;
+  font-size: 0.85em;
+  font-weight: 700;
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+
+/* Radar controls */
+.loopcontrols {
+  text-align: center;
+  padding: 4px 0;
+}
+
+.loopcontrols div {
+  display: inline-block;
+}
+
+.loopcontrols a {
+  display: inline-block;
+  margin: 0 2px;
+  background: #fff;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 2px;
+  color: rgb(49, 131, 253);
+  text-decoration: none;
+}
+
+.loopcontrols a:hover {
+  background: #e8f0fe;
+}
+
+.loopcontrols svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: block;
+}
+
+
+/* Map features */
+#map-features {
+  border: none;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#map-features td.label {
+  font-size: 12px;
+  text-align: left;
+  padding: 4px 4px;
+  white-space: nowrap;
+}
+
+#map-features label {
+  cursor: pointer;
+}
+
+#map-features input[type="checkbox"] {
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+.info {
+  font-size: 11px;
+  color: #555;
+  padding: 2px 4px;
+}
+
+.info p {
+  text-align: left;
+}
+
+.info input[type="button"] {
+  font-size: 12px;
+  margin: 2px;
+  padding: 1px 6px;
+}
+
+/* Pointer data - no sub-borders */
+
+/* Responsive */
+@media (max-width: 780px) {
+  .index-page,
+  .radar-title,
+  .tabs-bar,
+  table.viewer {
+    width: 100%;
+    max-width: 512px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .site-header .header-content {
+    max-width: 512px;
+    padding: 0;
+  }
+
+  table.viewer {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  table.viewer > tbody {
+    display: block;
+  }
+
+  table.viewer > tbody > tr {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  table.viewer td#overlayCell,
+  table.viewer td.imagePanel {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  table.viewer .togglesPanel {
+    width: 100%;
+    display: block;
+  }
+
+
+  #overlay {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}

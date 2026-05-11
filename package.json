@@ -1,0 +1,15 @@
+{
+  "name": "retrobureau",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs --serve",
+    "fmt": "prettier --write 'src/**/*.{html,css,ts}' '*.{json,mjs}'"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "prettier": "^3.8.3",
+    "typescript": "^5.7.0"
+  }
+}

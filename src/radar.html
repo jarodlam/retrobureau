@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radar Loop</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="radar-page">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <img src="images/logo-radar.svg" alt="" />
+          <span class="logo-text"
+            ><span class="logo-text-top">Retro Bureau</span><span class="hline"></span
+            ><span class="logo-text-bottom">Radar like it's 2008!</span></span
+          >
+        </a>
+      </div>
+    </header>
+
+    <h1 id="radar-title" class="radar-title"></h1>
+
+    <!-- Size selector tabs -->
+    <div class="tabs-bar">
+      <table>
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <table class="tabs">
+                <tbody>
+                  <tr>
+                    <td class="notactivetab">Loops</td>
+                    <td class="activetab">
+                      <a href="index.html">Other Radars</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" class="links">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <th><strong>Radar</strong></th>
+                            <td><a href="#" id="link-64">64 km</a></td>
+                            <td><a href="#" id="link-128">128 km</a></td>
+                            <td><a href="#" id="link-256">256 km</a></td>
+                            <td>
+                              <a href="#" id="link-512">512 km composite</a>
+                            </td>
+                            <td><a href="#" id="link-national">National</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Main viewer -->
+    <table class="viewer">
+      <tbody>
+        <tr>
+          <!-- Column 1: Radar image -->
+          <td id="overlayCell" rowspan="2" class="imagePanel">
+            <div id="overlay">
+              <div id="overlay-images">
+                <div id="loading-indicator">
+                  <div>Please wait,<br>radar images are loading...</div>
+                  <div id="loading-progress-wrap">
+                    <progress id="loading-progress-bar" max="100"></progress>
+                    <div id="loading-progress-text">&nbsp;</div>
+                  </div>
+                </div>
+                <img
+                  id="animation"
+                  class="animation"
+                  src=""
+                  alt="Radar images"
+                />
+              </div>
+            </div>
+          </td>
+
+          <!-- Column 2: Controls + Map features -->
+          <td id="controls-col1" class="togglesPanel">
+            <!-- Radar controls -->
+            <div class="border_item">
+              <div class="radarLabel">Radar controls</div>
+              <div class="loopcontrols">
+                <div>
+                  <a href="javascript:void(0);" id="btn-sweep" title="sweep frames">
+                    <svg viewBox="0 0 24 24"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z" fill="currentColor"/></svg>
+                  </a>
+                  <a href="javascript:void(0);" id="btn-back" title="step back one frame">
+                    <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/></svg>
+                  </a>
+                  <a href="javascript:void(0);" id="btn-fwd" title="step forward one frame">
+                    <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/></svg>
+                  </a>
+                  <a href="javascript:void(0);" id="btn-play" title="play">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                  </a>
+                </div>
+                <div>
+                  <a href="javascript:void(0);" id="btn-slower" title="slower">
+                    <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z" fill="currentColor"/></svg>
+                  </a>
+                  <a href="javascript:void(0);" id="btn-faster" title="faster">
+                    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/></svg>
+                  </a>
+                  <a href="javascript:void(0);" id="btn-stop" title="stop">
+                    <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z" fill="currentColor"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map features -->
+            <div class="border_item">
+              <div class="radarLabel">Map features</div>
+              <div id="tog">
+                <table id="map-features">
+                  <tbody>
+                    <tr>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="observations"
+
+                            id="feat-observations"
+                          />Weather observations</label
+                        >
+                      </td>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="catchments"
+                            id="feat-catchments"
+                          />River catchments</label
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="locations"
+                            id="feat-locations"
+                            checked
+                          />Locations</label
+                        >
+                      </td>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="wthrDistricts"
+                            id="feat-wthrDistricts"
+                          />Forecast districts</label
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="range"
+                            id="feat-range"
+                            checked
+                          />Range</label
+                        >
+                      </td>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="roads"
+                            id="feat-roads"
+                          />Roads</label
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="topography"
+                            id="feat-topography"
+                            checked
+                          />Topography</label
+                        >
+                      </td>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="rail"
+                            id="feat-rail"
+                          />Railways</label
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label">
+                        <label
+                          ><input
+                            type="checkbox"
+                            name="waterways"
+                            id="feat-waterways"
+                          />Lakes &amp; major rivers</label
+                        >
+                      </td>
+                      <td class="label">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="info">
+                  <p class="align-left">
+                    <input
+                      type="button"
+                      id="btn-hide-all"
+                      value="Hide all"
+                      title="Hide all the map features."
+                    />
+                    <input
+                      type="button"
+                      id="btn-show-all"
+                      value="Show all"
+                      title="Show all the map features."
+                    />
+                    <input
+                      type="button"
+                      id="btn-reset-features"
+                      value="Reset"
+                      title="Reset to default map features"
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script type="module" src="js/radar.js"></script>
+  </body>
+</html>
