@@ -113,6 +113,12 @@ export class OverlayManager {
     const config = LAYER_CONFIG[name];
     if (!config) return;
 
+    // Observations uses a dynamic URL, not a static transparency
+    if (name === "observations") {
+      this.showObservationsLayer();
+      return;
+    }
+
     const pid = overrideProductId || this.productId;
     const div = document.createElement("div");
     div.className = "layer-div";
@@ -121,6 +127,41 @@ export class OverlayManager {
     div.style.backgroundImage = `url("${this.overlayPath}${pid}.${name}.png")`;
     this.imagesContainer.appendChild(div);
     this.layers.set(name, div);
+  }
+
+  private showObservationsLayer() {
+    // Observations image is at /radar/{productId}.observations.{timestamp}.png
+    // Probe recent minutes to find the latest one
+    const now = new Date();
+    const BOM_BASE = "https://reg.bom.gov.au";
+
+    for (let i = 0; i <= 15; i++) {
+      const t = new Date(now.getTime() - i * 60 * 1000);
+      const ts =
+        t.getUTCFullYear().toString() +
+        String(t.getUTCMonth() + 1).padStart(2, "0") +
+        String(t.getUTCDate()).padStart(2, "0") +
+        String(t.getUTCHours()).padStart(2, "0") +
+        String(t.getUTCMinutes()).padStart(2, "0");
+      const url = `${BOM_BASE}/radar/${this.productId}.observations.${ts}.png`;
+
+      const img = new Image();
+      img.onload = () => {
+        if (this.layers.has("observations")) return;
+        const div = document.createElement("div");
+        div.className = "layer-div";
+        div.id = "observationsDiv";
+        div.style.zIndex = String(LAYER_CONFIG["observations"].zIndex);
+        div.style.backgroundImage = `url("${url}")`;
+        this.imagesContainer.appendChild(div);
+        this.layers.set("observations", div);
+      };
+      img.src = url;
+    }
+  }
+
+  hasLayer(name: string): boolean {
+    return this.layers.has(name);
   }
 
   hideLayer(name: string) {

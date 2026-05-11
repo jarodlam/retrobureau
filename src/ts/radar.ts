@@ -353,6 +353,11 @@ async function init() {
       await loop.loadFrames(newFrameUrls);
       if (wasPlaying) loop.play();
     }
+    // Refresh observations if enabled
+    if (overlayManager.hasLayer("observations")) {
+      overlayManager.hideLayer("observations");
+      overlayManager.showLayer("observations");
+    }
   }, 5 * 60 * 1000);
 }
 
